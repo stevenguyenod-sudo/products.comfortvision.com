@@ -26,6 +26,11 @@ header.top{display:flex;align-items:center;justify-content:space-between;padding
 .hero .vendor{font-size:13px;font-weight:600;opacity:.75;margin:0 0 8px}
 .hero .logo{display:block;height:30px;width:auto;margin:0 0 16px;background:#fff;padding:7px 12px;border-radius:8px;box-sizing:content-box}
 .vendor-foot img{height:22px;vertical-align:middle;margin-right:10px}
+.flyer-wrap{margin:0 -20px}
+.flyer-wrap img{width:100%;display:block}
+.flyer-actions{padding:20px 0 8px;display:flex;flex-direction:column;gap:12px;align-items:stretch}
+.flyer-cta{display:block;text-align:center;background:#16274A;color:#fff;font-weight:800;font-size:15px;padding:14px 20px;border-radius:999px;text-decoration:none}
+.flyer-browse{display:block;text-align:center;font-size:14px;font-weight:700;color:var(--slate);text-decoration:none;padding:8px}
 .hero h1{font-size:32px;line-height:1.1;font-weight:800;letter-spacing:-.02em;margin:0 0 12px}
 .hero .tag{font-size:16px;line-height:1.45;font-weight:500;opacity:.9;margin:0}
 
@@ -155,6 +160,14 @@ function render(){
 }
 
 function product(p){
+  if (p.flyerImage) {
+    return `
+    <div class="flyer-wrap"><img src="${esc(p.flyerImage)}" alt="${esc(p.name)} product information"></div>
+    <div class="flyer-actions">
+      <a class="flyer-cta" href="tel:+1-253-277-4998">Ask your optician</a>
+      <a class="flyer-browse" href="#">Browse all lenses and frames</a>
+    </div>`;
+  }
   const fade = p.swatchStyle === 'fade';
   const opts = !p.options?.length ? '' : fade
     ? `<div class="fade-grid">${p.options.map(o => `<div class="fade"><div class="lenses">
