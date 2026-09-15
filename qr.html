@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Product QR codes</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Manrope,system-ui,sans-serif;background:#F7F6F2;color:#1E2433}
+.wrap{max-width:960px;margin:0 auto;padding:24px 20px 60px}
+h1{font-size:22px;font-weight:800;margin:0 0 6px}
+.sub{color:#5C6577;font-size:14px;margin:0 0 18px}
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:22px}
+input,select,button{font:inherit;font-size:14px;padding:9px 12px;border:1px solid #D9D6CE;border-radius:8px;background:#fff}
+input{min-width:280px;flex:1}
+button{cursor:pointer;font-weight:600}
+button.primary{background:#16274A;color:#fff;border-color:#16274A}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.tile{background:#fff;border:1px solid #E3E1DA;border-radius:14px;padding:18px;text-align:center;page-break-inside:avoid;break-inside:avoid}
+.tile canvas,.tile img{display:block;margin:0 auto 10px;width:180px;height:180px}
+.tile h3{font-size:15px;font-weight:800;margin:0 0 2px}
+.tile p{font-size:12px;color:#5C6577;margin:0 0 10px;word-break:break-all}
+.tile .dl{font-size:12px;padding:6px 10px}
+@media print{body{background:#fff}.bar,.sub,.dl{display:none}.grid{grid-template-columns:repeat(3,1fr)}.tile{border-color:#ccc}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Product QR codes</h1>
+  <p class="sub">Each code opens that product's page. Print this page or download individual codes for signage and frame boards.</p>
+  <div class="bar">
+    <input id="base" value="https://products.comfortvision.com/">
+    <select id="cat"><option value="">All categories</option><option value="lenses">Lenses</option><option value="frames">Frames</option></select>
+    <button id="regen">Regenerate</button>
+    <button class="primary" onclick="window.print()">Print all</button>
+  </div>
+  <div class="grid" id="grid"></div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+let DATA = [];
+function build(){
+  const base = document.getElementById('base').value.replace(/\/?$/, '/');
+  const cat = document.getElementById('cat').value;
+  const grid = document.getElementById('grid');
+  grid.innerHTML = '';
+  DATA.filter(p => !cat || p.category === cat).forEach(p => {
+    const url = base + '#' + encodeURIComponent(p.id);
+    const tile = document.createElement('div');
+    tile.className = 'tile';
+    const holder = document.createElement('div');
+    tile.appendChild(holder);
+    tile.insertAdjacentHTML('beforeend', `<h3>${p.name}</h3><p>${url}</p>`);
+    const dl = document.createElement('button');
+    dl.className = 'dl'; dl.textContent = 'Download PNG';
+    tile.appendChild(dl);
+    grid.appendChild(tile);
+    new QRCode(holder, { text:url, width:180, height:180, correctLevel: QRCode.CorrectLevel.M });
+    dl.onclick = () => {
+      const c = holder.querySelector('canvas');
+      const a = document.createElement('a');
+      a.download = p.id + '-qr.png'; a.href = c.toDataURL('image/png'); a.click();
+    };
+  });
+}
+fetch('products.json', {cache:'no-store'}).then(r => r.json()).then(j => { DATA = j.products || []; build(); });
+document.getElementById('regen').onclick = build;
+</script>
+</body>
+</html>
