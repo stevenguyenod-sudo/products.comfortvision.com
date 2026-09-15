@@ -42,12 +42,12 @@ button.primary{background:#16274A;color:#fff;border-color:#16274A}
 <script>
 let DATA = [];
 function build(){
-  const base = document.getElementById('base').value.replace(/\/?$/, '/');
+  const base = document.getElementById('base').value.replace(/[?#].*$/, '').replace(/\/?$/, '/');
   const cat = document.getElementById('cat').value;
   const grid = document.getElementById('grid');
   grid.innerHTML = '';
   DATA.filter(p => !cat || p.category === cat).forEach(p => {
-    const url = base + '#' + encodeURIComponent(p.id);
+    const url = base + '?p=' + encodeURIComponent(p.id);
     const tile = document.createElement('div');
     tile.className = 'tile';
     const holder = document.createElement('div');
