@@ -24,6 +24,8 @@ header.top{display:flex;align-items:center;justify-content:space-between;padding
 
 .hero{background:var(--hero);color:var(--hero-text);border-radius:20px;padding:30px 26px 28px;margin-top:6px}
 .hero .vendor{font-size:13px;font-weight:600;opacity:.75;margin:0 0 8px}
+.hero .logo{display:block;height:30px;width:auto;margin:0 0 16px;background:#fff;padding:7px 12px;border-radius:8px;box-sizing:content-box}
+.vendor-foot img{height:22px;vertical-align:middle;margin-right:10px}
 .hero h1{font-size:32px;line-height:1.1;font-weight:800;letter-spacing:-.02em;margin:0 0 12px}
 .hero .tag{font-size:16px;line-height:1.45;font-weight:500;opacity:.9;margin:0}
 
@@ -34,6 +36,41 @@ header.top{display:flex;align-items:center;justify-content:space-between;padding
 .feature p{font-size:12px;line-height:1.45;color:var(--slate);margin:0}
 @media (max-width:420px){.features{grid-template-columns:1fr 1fr}.feature:last-child{grid-column:span 2}}
 
+
+.hero{position:relative;overflow:hidden}
+.hero.has-img{padding-bottom:0}
+.hero .note{font-family:Georgia,serif;font-style:italic;font-size:15px;opacity:.85;margin:14px 0 0}
+.hero img{display:block;width:calc(100% + 52px);margin:22px -26px 0;height:auto}
+.hero h1{font-size:30px}
+.hero .headline{font-size:20px;font-weight:800;letter-spacing:-.01em;margin:0 0 4px;line-height:1.2}
+.options .lead{color:var(--slate);font-size:14px;margin:-8px 0 16px}
+.fade-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 8px}
+@media (max-width:520px){.fade-grid{grid-template-columns:repeat(2,1fr)}}
+.fade{text-align:center}
+.lenses{display:flex;justify-content:center;margin-bottom:8px}
+.lenses i{display:block;width:34px;height:34px;border-radius:50%;margin-left:-12px;border:1px solid rgba(0,0,0,.08);box-shadow:inset 0 0 0 2px rgba(255,255,255,.35)}
+.lenses i:first-child{margin-left:0}
+.fade h4{font-size:14px;font-weight:800;margin:0}
+.fade p{font-size:12px;color:var(--slate);margin:2px 0 0;line-height:1.35}
+.split{margin-top:28px;border-radius:16px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;min-height:150px;position:relative;color:#fff}
+.split .l{background:#D9DDD4;color:var(--ink);padding:18px}
+.split .r{background:#2B3A55;padding:18px}
+.split .lab{font-size:12px;font-weight:800;letter-spacing:.02em;margin:0 0 8px}
+.split p{font-size:13px;line-height:1.5;margin:0}
+.split img{grid-column:1/-1;width:100%;display:block}
+.why{margin-top:32px}
+.why h2{font-size:20px;font-weight:800;letter-spacing:-.01em;margin:0 0 14px;padding-bottom:8px;border-bottom:2px solid var(--hero)}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.why-item{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px}
+.why-item .ic{flex:none;width:40px;height:40px;border-radius:50%;background:#EAF0F8;display:flex;align-items:center;justify-content:center}
+.why-item svg{width:20px;height:20px;stroke:var(--hero);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.why-item h3{font-size:14px;font-weight:800;margin:0 0 2px}
+.why-item p{font-size:12px;color:var(--slate);margin:0;line-height:1.4}
+.cta{margin-top:28px;padding:20px 22px;border-radius:16px;background:#EAF0F8;border:1px solid #D5E0EF}
+.cta h3{font-size:17px;font-weight:800;margin:0 0 6px}
+.cta p{font-size:14px;line-height:1.5;color:var(--slate);margin:0 0 14px}
+.cta .btn{display:inline-block;background:var(--hero);color:var(--hero-text);font-weight:800;font-size:14px;padding:12px 20px;border-radius:999px}
+.vendor-foot{margin-top:26px;font-size:12px;color:var(--slate);letter-spacing:.14em;text-align:center}
 .summary{font-size:16px;line-height:1.6;color:var(--ink);margin:26px 0 0;max-width:60ch}
 
 section.options{margin-top:32px}
@@ -97,6 +134,8 @@ const ICONS = {
   feather:'<svg viewBox="0 0 24 24"><path d="M20 4c-5 0-11 3-13 9l-3 7 7-3c6-2 9-8 9-13z"/><path d="M4 20 15 9"/></svg>',
   sparkles:'<svg viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 17v4m-2-2h4"/></svg>',
   eye:'<svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>',
+  glasses:'<svg viewBox="0 0 24 24"><circle cx="6.5" cy="14" r="3.5"/><circle cx="17.5" cy="14" r="3.5"/><path d="M10 14h4M3 14l2-6h3m13 6-2-6h-3"/></svg>',
+  gem:'<svg viewBox="0 0 24 24"><path d="M7 4h10l4 5-9 11L3 9z"/><path d="M3 9h18M9 9l3 11 3-11M7 4l2 5m8-5-2 5"/></svg>',
   chat:'<svg viewBox="0 0 24 24"><path d="M4 5h16v10H9l-5 4z"/></svg>'
 };
 const CATS = { lenses:'Lenses', frames:'Frames' };
@@ -116,22 +155,40 @@ function render(){
 }
 
 function product(p){
+  const fade = p.swatchStyle === 'fade';
+  const opts = !p.options?.length ? '' : fade
+    ? `<div class="fade-grid">${p.options.map(o => `<div class="fade"><div class="lenses">
+        <i style="background:color-mix(in srgb, ${esc(o.hex)} 22%, white)"></i>
+        <i style="background:color-mix(in srgb, ${esc(o.hex)} 60%, white)"></i>
+        <i style="background:${esc(o.hex)}"></i></div>
+        <h4>${esc(o.name)}</h4>${o.tagline ? `<p>${esc(o.tagline)}</p>` : ''}</div>`).join('')}</div>`
+    : `<div class="opt-grid">${p.options.map(o => `
+    <div class="opt"><div class="swatch" style="background:${esc(o.hex)}"></div><div>
+      <h4>${esc(o.name)}</h4>${o.tagline ? `<p class="t">${esc(o.tagline)}</p>` : ''}
+      ${o.bullets?.length ? `<ul>${o.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>` : ''}
+    </div></div>`).join('')}</div>`;
+  const cta = p.cta || { title:`Ask your optician about ${p.name}.`, text:"We'll help you find the right fit for your prescription, lifestyle, and budget." };
   return `
-  <div class="hero">
-    <p class="vendor">${esc(p.vendor)}</p>
+  <div class="hero${p.heroImage ? ' has-img' : ''}">
+    ${p.vendorLogo ? `<img class="logo" src="${esc(p.vendorLogo)}" alt="${esc(p.vendor)}">` : `<p class="vendor">${esc(p.vendor)}</p>`}
     <h1>${esc(p.name)}</h1>
+    ${p.headline ? `<p class="headline">${esc(p.headline)}</p>` : ''}
     <p class="tag">${esc(p.tagline)}</p>
+    ${p.heroNote ? `<p class="note">${esc(p.heroNote)}</p>` : ''}
+    ${p.heroImage ? `<img src="${esc(p.heroImage)}" alt="">` : ''}
   </div>
   ${p.features?.length ? `<div class="features">${p.features.map(f => `
     <div class="feature">${ICONS[f.icon] || ICONS.sparkles}<h3>${esc(f.title)}</h3><p>${esc(f.text)}</p></div>`).join('')}</div>` : ''}
   ${p.summary ? `<p class="summary">${esc(p.summary)}</p>` : ''}
-  ${p.options?.length ? `<section class="options"><h2>${esc(p.optionsTitle || 'Options')}</h2><div class="opt-grid">${p.options.map(o => `
-    <div class="opt"><div class="swatch" style="background:${esc(o.hex)}"></div><div>
-      <h4>${esc(o.name)}</h4>${o.tagline ? `<p class="t">${esc(o.tagline)}</p>` : ''}
-      ${o.bullets?.length ? `<ul>${o.bullets.map(b => `<li>${esc(b)}</li>`).join('')}</ul>` : ''}
-    </div></div>`).join('')}</div></section>` : ''}
+  ${opts ? `<section class="options"><h2>${esc(p.optionsTitle || 'Options')}</h2>${p.optionsLead ? `<p class="lead">${esc(p.optionsLead)}</p>` : ''}${opts}</section>` : ''}
+  ${p.split ? `<div class="split">${p.split.image ? `<img src="${esc(p.split.image)}" alt="">` : ''}
+    <div class="l"><p class="lab">${esc(p.split.leftLabel || 'Clear indoors')}</p></div>
+    <div class="r"><p class="lab">${esc(p.split.rightLabel || 'Dark outdoors')}</p><p>${esc(p.split.text || '')}</p></div></div>` : ''}
+  ${p.why?.length ? `<section class="why"><h2>${esc(p.whyTitle || 'Why choose it?')}</h2><div class="why-grid">${p.why.map(w => `
+    <div class="why-item"><div class="ic">${ICONS[w.icon] || ICONS.sparkles}</div><div><h3>${esc(w.title)}</h3><p>${esc(w.text)}</p></div></div>`).join('')}</div></section>` : ''}
   ${p.details?.length ? `<div class="details"><h2>Good to know</h2><ul>${p.details.map(d => `<li>${esc(d)}</li>`).join('')}</ul></div>` : ''}
-  <div class="ask">${ICONS.chat}<p>Ask your optician about ${esc(p.name)}.<small>We'll help you find the right fit for your prescription, lifestyle, and budget.</small></p></div>
+  <div class="cta"><h3>${esc(cta.title)}</h3><p>${esc(cta.text)}</p>${cta.button ? `<span class="btn">${esc(cta.button)}</span>` : ''}</div>
+  ${p.footerLine ? `<p class="vendor-foot">${p.vendorLogo ? `<img src="${esc(p.vendorLogo)}" alt="${esc(p.vendor)}">` : esc(p.vendor) + ' · '}${esc(p.footerLine)}</p>` : ''}
   <a class="browse" href="#">Browse all lenses and frames</a>`;
 }
 
