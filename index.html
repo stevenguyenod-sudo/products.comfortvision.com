@@ -123,7 +123,7 @@ footer a{text-decoration:none}
 <body>
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="#">Comfort Vision <span>&amp; Optik</span></a>
+    <a class="brand" href="/">Comfort Vision <span>&amp; Optik</span></a>
     <span class="chip" id="chip"></span>
   </header>
   <main id="app"><div class="empty">Loading…</div></main>
@@ -150,7 +150,8 @@ let DATA = [];
 function render(){
   const app = document.getElementById('app');
   const chip = document.getElementById('chip');
-  const id = decodeURIComponent(location.hash.replace(/^#/, ''));
+  const params = new URLSearchParams(location.search);
+  const id = params.get('p') || decodeURIComponent(location.hash.replace(/^#/, ''));
   const p = DATA.find(x => x.id === id);
   document.documentElement.style.setProperty('--hero', p?.heroColor || '#16274A');
   document.documentElement.style.setProperty('--hero-text', p?.heroText || '#FFFFFF');
@@ -165,7 +166,7 @@ function product(p){
     <div class="flyer-wrap"><img src="${esc(p.flyerImage)}" alt="${esc(p.name)} product information"></div>
     <div class="flyer-actions">
       <a class="flyer-cta" href="tel:+1-253-277-4998">Ask your optician</a>
-      <a class="flyer-browse" href="#">Browse all lenses and frames</a>
+      <a class="flyer-browse" href="/">Browse all lenses and frames</a>
     </div>`;
   }
   const fade = p.swatchStyle === 'fade';
@@ -202,14 +203,14 @@ function product(p){
   ${p.details?.length ? `<div class="details"><h2>Good to know</h2><ul>${p.details.map(d => `<li>${esc(d)}</li>`).join('')}</ul></div>` : ''}
   <div class="cta"><h3>${esc(cta.title)}</h3><p>${esc(cta.text)}</p>${cta.button ? `<span class="btn">${esc(cta.button)}</span>` : ''}</div>
   ${p.footerLine ? `<p class="vendor-foot">${p.vendorLogo ? `<img src="${esc(p.vendorLogo)}" alt="${esc(p.vendor)}">` : esc(p.vendor) + ' · '}${esc(p.footerLine)}</p>` : ''}
-  <a class="browse" href="#">Browse all lenses and frames</a>`;
+  <a class="browse" href="/">Browse all lenses and frames</a>`;
 }
 
 function catalog(){
   const groups = ['lenses','frames'].filter(c => DATA.some(p => p.category === c));
   return `<div class="catalog"><h1>Our lenses and frames</h1><p class="lead">Scan a code in the office, or browse everything here.</p>
   ${groups.map(c => `<p class="cat-title">${CATS[c]}</p><div class="cat-grid">${DATA.filter(p => p.category === c).map(p => `
-    <a class="card" href="#${encodeURIComponent(p.id)}">
+    <a class="card" href="?p=${encodeURIComponent(p.id)}">
       <div class="band" style="background:${esc(p.heroColor)};color:${esc(p.heroText || '#fff')}"><span>${esc(p.vendor)}</span></div>
       <div class="body"><h3>${esc(p.name)}</h3><p>${esc(p.tagline)}</p>
         ${p.options?.length ? `<div class="dots">${p.options.slice(0,8).map(o => `<i style="background:${esc(o.hex)}"></i>`).join('')}</div>` : ''}
@@ -218,7 +219,7 @@ function catalog(){
 
 fetch('products.json', {cache:'no-store'}).then(r => r.json()).then(j => { DATA = j.products || []; render(); })
   .catch(() => { document.getElementById('app').innerHTML = '<div class="empty">Product information isn\'t available right now. Ask a team member for help.</div>'; });
-window.addEventListener('hashchange', render);
+window.addEventListener('popstate', render);
 </script>
 </body>
 </html>
