@@ -218,6 +218,16 @@
       "heroColor": "#C0392B",
       "heroText": "#FFFFFF",
       "flyerImage": "img/tomato-glasses-flyer.png"
+    },
+    {
+      "id": "rudy-project",
+      "category": "frames",
+      "vendor": "Rudy Project",
+      "name": "Rudy Project",
+      "tagline": "High-performance eyewear designed for an active life.",
+      "heroColor": "#0A1628",
+      "heroText": "#FFFFFF",
+      "flyerImage": "img/rudy-project-flyer.png"
     }
   ]
 }
