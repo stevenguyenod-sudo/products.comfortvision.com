@@ -208,6 +208,16 @@
       "heroColor": "#2C4A35",
       "heroText": "#FFFFFF",
       "flyerImage": "img/141-eyewear-flyer.png"
+    },
+    {
+      "id": "tomato-glasses",
+      "category": "frames",
+      "vendor": "Tomato Glasses",
+      "name": "Tomato Glasses",
+      "tagline": "Frames for every stage.",
+      "heroColor": "#C0392B",
+      "heroText": "#FFFFFF",
+      "flyerImage": "img/tomato-glasses-flyer.png"
     }
   ]
 }
