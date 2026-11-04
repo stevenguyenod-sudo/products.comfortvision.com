@@ -228,6 +228,16 @@
       "heroColor": "#0A1628",
       "heroText": "#FFFFFF",
       "flyerImage": "img/rudy-project-flyer.png"
+    },
+    {
+      "id": "hugo-boss",
+      "category": "frames",
+      "vendor": "Hugo Boss",
+      "name": "Boss by Hugo Boss",
+      "tagline": "Clean lines, simple, classic designs with elegant color combinations.",
+      "heroColor": "#1A1A1A",
+      "heroText": "#FFFFFF",
+      "flyerImage": "img/hugo-boss-flyer.png"
     }
   ]
 }
